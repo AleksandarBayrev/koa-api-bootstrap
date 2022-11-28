@@ -7,7 +7,7 @@ export const indexRouteDelete = (router: Router) => {
     router.delete('/', async (context: koa.ParameterizedContext<AppState, AppContext>, next) => {
         context.set('Content-Type', contentTypes.json);
         context.body = {
-            message: 'Hello, World! This is the GET route.'
+            message: 'Hello, World! This is the DELETE route.'
         };
     });
 }

@@ -4,11 +4,14 @@
   "description": "Koa Web API boostrap package used to create an Koa Web API/Microservice/Web application with the bare essentials",
   "main": "dist/app.js",
   "scripts": {
-    "build": "npm run compile && npm run bundle",
-    "build:dev": "npm run compile && npm run bundle:dev",
+    "build": "npm run clean && npm run compile && npm run bundle && npm run clean:build",
+    "build:dev": "npm run clean && npm run compile && npm run bundle:dev && npm run clean:build",
     "compile": "tsc",
     "bundle": "webpack --config webpack.config.js",
     "bundle:dev": "webpack --config webpack.development.config.js",
+    "clean": "npm run clean:build && npm run clean:dist",
+    "clean:build": "shx rm -rf ./build",
+    "clean:dist": "shx rm -rf ./dist",
     "test": "jest"
   },
   "repository": {
