@@ -1,0 +1,4 @@
+# Ignore essential Node.JS and build artifacts
+node_modules/
+build/
+dist/
