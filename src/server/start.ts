@@ -1,8 +1,8 @@
 import koa from 'koa';
-import { AppContext, AppState, ILogger } from '../types';
+import { AppContext, AppServices, AppState, ILogger } from '../types';
 
-export const start = (app: koa<AppState, AppContext>, logger: ILogger, port: number) => {
+export const start = (app: koa<AppState, AppContext>, services: AppServices, port: number) => {
     app.listen(port, async () => {
-        await logger.log(`Server started on port ${port}`);
+        await services.logger.log(`Server started on port ${port}`);
     });
 }
