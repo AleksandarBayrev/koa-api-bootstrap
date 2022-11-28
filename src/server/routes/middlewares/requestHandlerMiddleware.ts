@@ -14,10 +14,11 @@ const mapMessageOnError = (context: koa.ParameterizedContext<AppState, AppContex
 
 export const requestHandlerMiddleware = (app: koa<AppState, AppContext>, logger: ILogger) => {
     app.use(async (context: koa.ParameterizedContext<AppState, AppContext>, next) => {
+        const method = `[HTTP ${context.method}]`;
         try {
-            await logger.log(`Requesting ${context.request.url}`);
+            await logger.log(`${method} Requesting ${context.request.url}`);
             await next();
-            await logger.log(`Request to ${context.request.url} status = ${context.response.status}`);
+            await logger.log(`${method} Request to ${context.request.url} status = ${context.response.status}`);
             if (context.response.status >= 400) {
                 context.throw(context.response.status);
             }
@@ -25,7 +26,7 @@ export const requestHandlerMiddleware = (app: koa<AppState, AppContext>, logger:
             await logger.logObject(err);
             context.response.status = err.status || 404;
             const message = mapMessageOnError(context);
-            await logger.log(`${message}, route: ${context.url}`);
+            await logger.log(`${method} ${message}, route: ${context.url}`);
             context.set('Content-Type', contentTypes.json);
             context.body = {
                 route: context.url,
