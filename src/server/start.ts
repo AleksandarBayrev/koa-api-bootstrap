@@ -1,5 +1,5 @@
 import koa from 'koa';
-import { AppContext, AppServices, AppState, ILogger } from '../types';
+import { AppContext, AppServices, AppState } from '../types';
 
 export const start = (app: koa<AppState, AppContext>, services: AppServices, port: number) => {
     app.listen(port, async () => {
