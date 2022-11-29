@@ -3,3 +3,5 @@ export const contentTypes = Object.freeze({
     pdf: 'application/pdf',
     octet: 'application/octet-stream'
 });
+
+export const ConfigFileName = 'config.json';
