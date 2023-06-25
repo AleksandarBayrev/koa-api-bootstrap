@@ -1,9 +1,10 @@
 import koa from "koa";
 import Router from "koa-router";
-import { AppContext, AppServices, AppState } from "../types";
+import { AppContext,  AppState } from "../types";
 import { indexRouteDelete, indexRouteGet, indexRoutePatch, indexRoutePost, indexRoutePut } from "./routes";
+import { Services } from "../instances";
 
-export const mapRoutes = (app: koa<AppState, AppContext>, services: AppServices) => {
+export const mapRoutes = (app: koa<AppState, AppContext>, services: Services) => {
     const router = new Router();
     indexRouteGet(router);
     indexRouteDelete(router);

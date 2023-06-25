@@ -1,9 +1,10 @@
 import koa from "koa";
-import { AppConfig, AppContext, AppServices, AppState } from "../types";
+import { AppConfig, AppContext, AppState, ILogger } from "../types";
 import { jsonMiddleware, requestHandlerMiddleware, staticFilesMiddleware } from "./routes/middlewares";
+import { Services } from "../instances";
 
-export const mapMiddlewares = (app: koa<AppState, AppContext>, services: AppServices, configuration: AppConfig) => {
+export const mapMiddlewares = (app: koa<AppState, AppContext>, services: Services, configuration: AppConfig) => {
     jsonMiddleware(app);
-    requestHandlerMiddleware(app, services.logger);
-    staticFilesMiddleware(app, services.logger, configuration);
+    requestHandlerMiddleware(app, services.get<ILogger>("logger"));
+    staticFilesMiddleware(app, services.get<ILogger>("logger"), configuration);
 }
