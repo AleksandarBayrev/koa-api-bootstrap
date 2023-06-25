@@ -1,9 +1,9 @@
 import koa from 'koa';
-import instances from './instances';
+import instances, { Services } from './instances';
 import { mapMiddlewares, mapRoutes, start, getConfiguration } from './server';
-import { AppContext, AppState, AppServices, AppConfig } from './types';
+import { AppContext, AppState, AppConfig } from './types';
 
-(async (services: AppServices) => {
+(async (services: Services) => {
     const config: AppConfig = getConfiguration();
     const app = new koa<AppState, AppContext>();
     mapMiddlewares(app, services, config);
