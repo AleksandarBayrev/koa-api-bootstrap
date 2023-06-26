@@ -1,14 +1,16 @@
 import koa from 'koa';
-import instances, { Services } from './instances';
 import { mapMiddlewares, mapRoutes, start, getConfiguration } from './server';
 import { AppContext, AppState, AppConfig } from './types';
 import { configureInstances } from './configureInstances';
+import { DependencyInjection } from './base';
 
-(async (services: Services) => {
-    configureInstances(services);
+DependencyInjection.setupInstance(console.log, false);
+
+(async (DI: DependencyInjection) => {
+    configureInstances(DI);
     const config: AppConfig = getConfiguration();
     const app = new koa<AppState, AppContext>();
-    mapMiddlewares(app, services, config);
-    mapRoutes(app, services);
-    start(app, services, config.port);
-})(instances);
+    mapMiddlewares(app, DI, config);
+    mapRoutes(app, DI);
+    start(app, DI, config.port);
+})(DependencyInjection.getInstance());

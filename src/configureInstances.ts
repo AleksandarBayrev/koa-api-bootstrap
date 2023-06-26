@@ -1,7 +1,7 @@
-import { Services } from "./instances";
+import { DependencyInjection } from "./base";
 import { Logger } from "./services";
 import { ILogger } from "./types";
 
-export const configureInstances = (services: Services) => {
-    services.add<ILogger>("logger", new Logger());
+export const configureInstances = (DI: DependencyInjection) => {
+    DI.registerService<ILogger>("ILogger", "singleton", Logger, []);
 }
