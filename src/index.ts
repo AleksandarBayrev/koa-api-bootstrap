@@ -12,7 +12,7 @@ DependencyInjection.setupInstance(console.log, false);
     const logger: ILogger = DI.getService<ILogger>("ILogger");
     const config: AppConfig = getConfiguration();
     if (config.logTotalHeapOnStartup) {
-        logger.log(JSON.stringify(process.memoryUsage()));
+        logger.logObject(process.memoryUsage());
     }
     const app = new koa<AppState, AppContext>();
     mapMiddlewares(app, DI, config);
