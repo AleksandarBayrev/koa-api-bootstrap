@@ -4,6 +4,7 @@ type StaticFileServingOptions = {
 }
 
 export type AppConfig = {
+    logTotalHeapOnStartup: boolean;
     port: number;
     staticFileServing?: StaticFileServingOptions;
 }
