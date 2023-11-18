@@ -1,8 +1,9 @@
 import { AppConfig } from '../types';
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import { ConfigFileName } from '../constants';
 
-export const getConfiguration = (): AppConfig => {
-    return JSON.parse(fs.readFileSync(path.join(__dirname, ConfigFileName)).toString());
+export const getConfiguration = async (): Promise<AppConfig> => {
+    const fileContents = await fs.readFile(path.join(__dirname, ConfigFileName));
+    return JSON.parse(fileContents.toString());
 }

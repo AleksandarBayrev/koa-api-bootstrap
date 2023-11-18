@@ -10,7 +10,7 @@ DependencyInjection.setupInstance(console.log, false);
 (async (DI: DependencyInjection) => {
     configureInstances(DI);
     const logger: ILogger = DI.getService<ILogger>("ILogger");
-    const config: AppConfig = getConfiguration();
+    const config: AppConfig = await getConfiguration();
     if (config.logTotalHeapOnStartup) {
         logger.logObject(process.memoryUsage());
     }
