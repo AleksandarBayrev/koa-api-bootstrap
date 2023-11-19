@@ -7,6 +7,7 @@ import { ILogger, IRequestMediator } from "./types";
 
 export const configureInstances = (DI: DependencyInjection) => {
     enhanceClass(Logger, "Logger");
+    enhanceClass(RequestMediator, "RequestMediator");
     DI.registerService<ILogger>("ILogger", "singleton", Logger, []);
     const logger = DI.getService<ILogger>("ILogger");
     DI.registerService<IRequestMediator>("IRequestMediator", "singleton", RequestMediator, [logger]);
