@@ -6,10 +6,10 @@ import { DependencyInjection } from "../base";
 
 export const mapRoutes = (app: koa<AppState, AppContext>, DI: DependencyInjection) => {
     const router = new Router();
-    indexRouteGet(router);
-    indexRouteDelete(router);
-    indexRoutePatch(router);
-    indexRoutePost(router);
-    indexRoutePut(router);
+    indexRouteGet(router, DI);
+    indexRouteDelete(router, DI);
+    indexRoutePatch(router, DI);
+    indexRoutePost(router, DI);
+    indexRoutePut(router, DI);
     app.use(router.routes());
 }
