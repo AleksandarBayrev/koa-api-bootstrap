@@ -1,13 +1,12 @@
 import koa from 'koa';
 import Router from 'koa-router';
-import { contentTypes } from '../../constants';
-import { AppContext, AppState } from '../../types';
+import { AppContext, AppState, IRequestMediator } from '../../types';
+import { DependencyInjection } from '../../base';
 
-export const indexRoutePatch = (router: Router) => {
+export const indexRoutePatchHandlerName = "indexRoutePatch";
+
+export const indexRoutePatch = (router: Router, DI: DependencyInjection) => {
     router.patch('/', async (context: koa.ParameterizedContext<AppState, AppContext>, next) => {
-        context.set('Content-Type', contentTypes.json);
-        context.body = {
-            message: 'Hello, World! This is the PATCH route.'
-        };
+        return await DI.getService<IRequestMediator>("IRequestMediator").sendRequest(indexRoutePatchHandlerName, DI, context, next);
     });
 }

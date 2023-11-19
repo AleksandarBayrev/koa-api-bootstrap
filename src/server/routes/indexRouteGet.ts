@@ -1,13 +1,12 @@
 import koa from 'koa';
 import Router from 'koa-router';
-import { contentTypes } from '../../constants';
-import { AppContext, AppState } from '../../types';
+import { AppContext, AppState, IRequestMediator } from '../../types';
+import { DependencyInjection } from '../../base';
 
-export const indexRouteGet = (router: Router) => {
+export const indexRouteGetHandlerName = "indexRouteGet";
+
+export const indexRouteGet = (router: Router, DI: DependencyInjection) => {
     router.get('/', async (context: koa.ParameterizedContext<AppState, AppContext>, next) => {
-        context.set('Content-Type', contentTypes.json);
-        context.body = {
-            message: 'Hello, World! This is the GET route.'
-        };
+        return await DI.getService<IRequestMediator>("IRequestMediator").sendRequest(indexRouteGetHandlerName, DI, context, next);
     });
 }
