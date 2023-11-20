@@ -7,6 +7,8 @@
 ## Configuration (`config.json`)
 * `port` - specifies the port on which the service will run
 * `staticFileServing` - two options: `enabled` and `path` - used to enable/disable static file hosting on given path
+* `logTotalHeapOnStartup` - logs total heap used on startup, values => `true` / `false`
+* `minLogLevel` - sets the logger level, values => `0` / `1` / `2`
 
 ## Note about static file serving
 * When `staticFileServing` feature is enabled the app will create a `static` directory on which you should place your files that you want to be served.

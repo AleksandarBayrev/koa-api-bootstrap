@@ -1,5 +1,6 @@
 {
     "logTotalHeapOnStartup": false,
+    "minLogLevel": 0,
     "port": 3000,
     "staticFileServing": {
         "enabled": true,

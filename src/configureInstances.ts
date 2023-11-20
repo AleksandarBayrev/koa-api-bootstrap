@@ -3,12 +3,12 @@ import { enhanceClass } from "./base/enhanceClass";
 import { indexRouteDeleteHandler, indexRouteGetHandler, indexRoutePatchHandler, indexRoutePostHandler, indexRoutePutHandler } from "./handlers";
 import { indexRouteDeleteHandlerName, indexRouteGetHandlerName, indexRoutePatchHandlerName, indexRoutePostHandlerName, indexRoutePutHandlerName } from "./server/routes";
 import { Logger, RequestMediator } from "./services";
-import { ILogger, IRequestMediator } from "./types";
+import { AppConfig, ILogger, IRequestMediator } from "./types";
 
-export const configureInstances = (DI: DependencyInjection) => {
+export const configureInstances = (DI: DependencyInjection, appConfig: AppConfig) => {
     enhanceClass(Logger, "Logger");
     enhanceClass(RequestMediator, "RequestMediator");
-    DI.registerService<ILogger>("ILogger", "singleton", Logger, []);
+    DI.registerService<ILogger>("ILogger", "singleton", Logger, [appConfig]);
     const logger = DI.getService<ILogger>("ILogger");
     DI.registerService<IRequestMediator>("IRequestMediator", "singleton", RequestMediator, [logger]);
     const requestMediator = DI.getService<IRequestMediator>("IRequestMediator");
