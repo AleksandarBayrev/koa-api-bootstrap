@@ -1,6 +1,6 @@
 import koa from "koa";
 import { contentTypes } from "../../../constants";
-import { AppContext, AppState, ILogger } from "../../../types";
+import { AppConfig, AppContext, AppState, ILogger } from "../../../types";
 import { ErrorResponse } from "../../../types/responses";
 
 const errorMessages: {[key: number]: string} = Object.freeze({
@@ -13,7 +13,7 @@ const mapMessageOnError = (context: koa.ParameterizedContext<AppState, AppContex
     return errorMessages[context.response.status] ?? errorMessages[500];
 }
 
-export const requestHandlerMiddleware = (app: koa<AppState, AppContext>, logger: ILogger) => {
+export const requestHandlerMiddleware = (app: koa<AppState, AppContext>, appConfig: AppConfig, logger: ILogger) => {
     app.use(async (context: koa.ParameterizedContext<AppState, AppContext, {[key:string]: any} & ErrorResponse>, next) => {
         const method = `[HTTP ${context.method}]`;
         try {
@@ -25,7 +25,9 @@ export const requestHandlerMiddleware = (app: koa<AppState, AppContext>, logger:
             }
         } catch (err: any) {
             const castedError = err as {message: string, status: number};
-            await logger.errorObject(castedError);
+            if (appConfig.developerMode) {
+                await logger.errorObject(castedError);
+            }
             context.response.status = castedError.status || 404;
             const message = castedError.message || mapMessageOnError(context);
             await logger.error(`${method} ${message}, route: ${context.url}`);

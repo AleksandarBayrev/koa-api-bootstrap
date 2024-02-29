@@ -8,6 +8,7 @@ type StaticFileServingOptions = {
 export type AppConfig = {
     logTotalHeapOnStartup: boolean;
     minLogLevel: LogLevel;
+    developerMode: boolean;
     port: number;
     staticFileServing?: StaticFileServingOptions;
 }
