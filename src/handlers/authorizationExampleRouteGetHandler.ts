@@ -4,7 +4,7 @@ import { AppContext, AppState, RequestMediatorHandler } from '../types';
 import { contentTypes } from '../constants';
 
 export const authorizationExampleRouteGetHandler: RequestMediatorHandler = async (DI: DependencyInjection, context: koa.ParameterizedContext<AppState, AppContext>, next: koa.Next) => {
-    if (context.authorizationToken !== context.query.authorizationToken || !context.query.authorizationToken) {
+    if (context.authorizationToken !== context.header.authorization || !context.header.authorization) {
         context.status = 401;
         context.body = {
             message: 'Unauthorized. Please provide authorization token.'
