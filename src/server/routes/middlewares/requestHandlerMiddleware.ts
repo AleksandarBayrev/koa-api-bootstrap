@@ -20,7 +20,7 @@ export const requestHandlerMiddleware = (app: koa<AppState, AppContext>, logger:
             await next();
             await logger.info(`${method} Request to ${context.request.url} status = ${context.response.status}`);
             if (context.response.status >= 400) {
-                context.throw(context.response.message, context.response.status);
+                context.throw(context.response.status, (context.body as {message: string}).message);
             }
         } catch (err: any) {
             const castedError = err as {message: string, status: number};

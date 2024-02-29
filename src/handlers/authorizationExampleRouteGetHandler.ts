@@ -7,7 +7,7 @@ export const authorizationExampleRouteGetHandler: RequestMediatorHandler = async
     if (context.authorizationToken !== context.query.authorizationToken || !context.query.authorizationToken) {
         context.status = 401;
         context.body = {
-            message: 'Unauthorized'
+            message: 'Unauthorized. Please provide authorization token.'
         };
         return;
     }
