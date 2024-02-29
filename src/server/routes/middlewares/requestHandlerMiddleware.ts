@@ -1,6 +1,7 @@
 import koa from "koa";
 import { contentTypes } from "../../../constants";
 import { AppContext, AppState, ILogger } from "../../../types";
+import { ErrorResponse } from "../../../types/responses";
 
 const errorMessages: {[key: number]: string} = Object.freeze({
     404: `Route not found`,
@@ -13,14 +14,14 @@ const mapMessageOnError = (context: koa.ParameterizedContext<AppState, AppContex
 }
 
 export const requestHandlerMiddleware = (app: koa<AppState, AppContext>, logger: ILogger) => {
-    app.use(async (context: koa.ParameterizedContext<AppState, AppContext>, next) => {
+    app.use(async (context: koa.ParameterizedContext<AppState, AppContext, {[key:string]: any} & ErrorResponse>, next) => {
         const method = `[HTTP ${context.method}]`;
         try {
             await logger.info(`${method} Requesting ${context.request.url}`);
             await next();
             await logger.info(`${method} Request to ${context.request.url} status = ${context.response.status}`);
             if (context.response.status >= 400) {
-                context.throw(context.response.status, (context.body as {message: string}).message);
+                context.throw(context.response.status, context.body.message);
             }
         } catch (err: any) {
             const castedError = err as {message: string, status: number};
@@ -32,7 +33,7 @@ export const requestHandlerMiddleware = (app: koa<AppState, AppContext>, logger:
             context.body = {
                 route: context.url,
                 message,
-                status: context.response.status
+                statusCode: context.response.status
             };
         }
     });
