@@ -1,3 +1,3 @@
 import { DefaultContext } from 'koa';
 
-export type AppContext = DefaultContext & {};
+export interface AppContext extends DefaultContext {}

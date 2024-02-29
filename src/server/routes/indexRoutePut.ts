@@ -5,7 +5,7 @@ import { DependencyInjection } from '../../base';
 
 export const indexRoutePutHandlerName = "indexRoutePut";
 
-export const indexRoutePut = (router: Router, DI: DependencyInjection) => {
+export const indexRoutePut = (router: Router<AppState, AppContext>, DI: DependencyInjection) => {
     router.put('/', async (context: koa.ParameterizedContext<AppState, AppContext>, next) => {
         return await DI.getService<IRequestMediator>("IRequestMediator").sendRequest(indexRoutePutHandlerName, DI, context, next);
     });

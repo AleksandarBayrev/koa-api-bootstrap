@@ -5,7 +5,7 @@ import { DependencyInjection } from '../../base';
 
 export const indexRouteDeleteHandlerName = "indexRouteDelete";
 
-export const indexRouteDelete = (router: Router, DI: DependencyInjection) => {
+export const indexRouteDelete = (router: Router<AppState, AppContext>, DI: DependencyInjection) => {
     router.delete('/', async (context: koa.ParameterizedContext<AppState, AppContext>, next) => {
         return await DI.getService<IRequestMediator>("IRequestMediator").sendRequest(indexRouteDeleteHandlerName, DI, context, next);
     });
