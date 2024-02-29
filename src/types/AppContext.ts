@@ -1,3 +1,5 @@
 import { DefaultContext } from 'koa';
 
-export interface AppContext extends DefaultContext {}
+export interface AppContext extends DefaultContext {
+    authorizationToken: string;
+}
