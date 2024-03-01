@@ -1,5 +1,5 @@
 import { DefaultContext } from 'koa';
 
 export interface AppContext extends DefaultContext {
-    authorizationToken: string;
+    user?: {id: string, username: string};
 }
