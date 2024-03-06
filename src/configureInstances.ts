@@ -20,4 +20,7 @@ export const configureInstances = (DI: DependencyInjection, appConfig: AppConfig
     requestMediator.addHandler(routes.indexRoutePutHandlerName, handlers.indexRoutePutHandler);
     requestMediator.addHandler(routes.indexRouteDeleteHandlerName, handlers.indexRouteDeleteHandler);
     requestMediator.addHandler(routes.authorizationExampleRouteGetHandlerName, handlers.authorizationExampleRouteGetHandler);
+    if (configurationProvider.getConfiguration().useHealthcheck) {
+        requestMediator.addHandler(routes.healthcheckRouteGetHandlerName, handlers.healthcheckRouteGetHandler);
+    }
 }
