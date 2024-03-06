@@ -12,12 +12,7 @@ DependencyInjection.setupInstance(console.log, false);
     const config: AppConfig = await getConfiguration();
     configureInstances(DI, config);
     const logger: ILogger = DI.getService<ILogger>("ILogger");
-    if (config.logTotalHeapOnStartup) {
-        logger.infoObject(process.memoryUsage());
-    }
-    if (config.developerMode) {
-        logger.warn('Developer mode enabled, not recommended unless you want to debug some issue!');
-    }
+    Helpers.logFlags(config, logger);
     logger.appInfo(`Application minimum log level => ${Helpers.getLogLevel(config.minLogLevel)}`);
     const app = new koa<AppState, AppContext>();
     mapMiddlewares(app, DI);
