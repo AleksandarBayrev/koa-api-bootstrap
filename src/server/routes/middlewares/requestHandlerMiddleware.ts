@@ -21,10 +21,10 @@ export const requestHandlerMiddleware = (app: koa<AppState, AppContext>, appConf
             await next();
             await logger.info(`${method} Request to ${context.request.url} status = ${context.response.status}`);
             if (context.response.status >= 400) {
-                context.throw(context.response.status, context.body.message);
+                context.throw(context.response.status, context.body?.message);
             }
         } catch (err: any) {
-            const castedError = err as {message: string, status: number};
+            const castedError = err as {message: string | undefined, status: number};
             if (appConfig.developerMode) {
                 await logger.errorObject(castedError);
             }

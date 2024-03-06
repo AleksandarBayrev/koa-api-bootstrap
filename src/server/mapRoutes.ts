@@ -1,7 +1,7 @@
 import koa from "koa";
 import Router from "koa-router";
 import { AppContext,  AppState } from "../types";
-import { authorizationExampleRouteGet, indexRouteDelete, indexRouteGet, indexRoutePatch, indexRoutePost, indexRoutePut } from "./routes";
+import { authorizationExampleRouteGet, healthcheckRouteGet, indexRouteDelete, indexRouteGet, indexRoutePatch, indexRoutePost, indexRoutePut } from "./routes";
 import { DependencyInjection } from "../base";
 
 export const mapRoutes = (app: koa<AppState, AppContext>, DI: DependencyInjection) => {
@@ -12,5 +12,6 @@ export const mapRoutes = (app: koa<AppState, AppContext>, DI: DependencyInjectio
     indexRoutePost(router, DI);
     indexRoutePut(router, DI);
     authorizationExampleRouteGet(router, DI);
+    healthcheckRouteGet(router, DI);
     app.use(router.routes());
 }

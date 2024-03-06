@@ -5,3 +5,6 @@ export * from './ILogger';
 export * from './IRequestMediator';
 export * from './RequestMediatorHandler';
 export * from './LogLevel';
+export * from './HealthCheckStatus';
+export * from './HealthCheckProblem';
+export * from './IConfigurationProvider';

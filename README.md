@@ -10,6 +10,8 @@
 * `logTotalHeapOnStartup` - logs total heap used on startup, values => `true` / `false`
 * `minLogLevel` - sets the logger level, values => `0` / `1` / `2`
 * `developerMode` - logs any developer related information (such as callstacks or other predefined stuff you want to hide normally) (if such logs are added)
+* `useCors` - decides whether CORS middleware should be used
+* `useHealthcheck` - decides whether a `/healthcheck` endpoint should be exposed
 
 ## Note about static file serving
 * When `staticFileServing` feature is enabled the app will create a `static` directory on which you should place your files that you want to be served.

@@ -20,7 +20,7 @@ DependencyInjection.setupInstance(console.log, false);
     }
     logger.appInfo(`Application minimum log level => ${Helpers.getLogLevel(config.minLogLevel)}`);
     const app = new koa<AppState, AppContext>();
-    mapMiddlewares(app, DI, config);
+    mapMiddlewares(app, DI);
     mapRoutes(app, DI);
     start(app, DI, config.port);
 })(DependencyInjection.getInstance());

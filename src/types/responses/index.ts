@@ -4,3 +4,4 @@ export * from './IndexRouteDeleteResponse';
 export * from './IndexRoutePatchResponse';
 export * from './IndexRoutePostResponse';
 export * from './IndexRoutePutResponse';
+export * from './HealthCheckResponse';
