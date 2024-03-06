@@ -10,7 +10,6 @@ export type AppConfig = {
     minLogLevel: LogLevel;
     developerMode: boolean;
     port: number;
-    useCors: boolean;
     useHealthcheck: boolean;
     staticFileServing?: StaticFileServingOptions;
 }
