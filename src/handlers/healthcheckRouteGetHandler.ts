@@ -1,6 +1,6 @@
 import koa from 'koa';
 import { DependencyInjection } from '../base';
-import { AppContext, AppState, HealthCheckStatus, RequestMediatorHandler } from '../types';
+import { AppContext, AppState, HealthCheckProblem, HealthCheckStatus, RequestMediatorHandler } from '../types';
 import { contentTypes } from '../constants';
 import { ErrorResponse, HealthCheckResponse } from '../types/responses';
 
@@ -10,8 +10,9 @@ export const healthcheckRouteGetHandler: RequestMediatorHandler = async (
     next: koa.Next
 ) => {
     context.set('Content-Type', contentTypes.json);
+    const problems: HealthCheckProblem[] = [];
     context.body = {
-        status: HealthCheckStatus.Healthy,
-        problems: []
+        status: problems.length ? HealthCheckStatus.Unhealthy : HealthCheckStatus.Healthy,
+        problems
     };
 }
