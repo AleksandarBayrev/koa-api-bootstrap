@@ -1,3 +1,4 @@
+import { EnhancedClass } from "./enhanceClass";
 import { DILogger, ServiceDescription, ServiceLifespan, DIClassDefinition, AvailableServices } from "./types";
 
 export class DependencyInjection {
@@ -35,6 +36,9 @@ export class DependencyInjection {
         serviceLifespan: ServiceLifespan,
         classDefinition: DIClassDefinition<T>,
         constructorParameters: any[]): void {
+        if (!(classDefinition as EnhancedClass<any>)["className"]) {
+            throw new Error(`Class definition for base type ${baseType} not enhanced! Use enhanceClass helper.`);
+        }
         if (this.serviceDescriptors.has(baseType) || this.services.has(baseType)) {
             throw new Error(`Base type ${baseType} already registered in DI`);
         }
