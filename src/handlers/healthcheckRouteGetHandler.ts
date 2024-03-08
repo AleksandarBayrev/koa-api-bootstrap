@@ -9,6 +9,10 @@ export const healthcheckRouteGetHandler: RequestMediatorHandler = async (
     context: koa.ParameterizedContext<AppState, AppContext, HealthCheckResponse | ErrorResponse>,
     next: koa.Next
 ) => {
+    if (context.headers["healthcheck-status"] !== "true") {
+        context.status = 404;
+        return;
+    }
     context.set('Content-Type', contentTypes.json);
     const problems: HealthCheckProblem[] = [];
     context.body = {
