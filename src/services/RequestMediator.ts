@@ -1,4 +1,5 @@
 import { DependencyInjection } from "../base";
+import { enhanceClass } from "../base/enhanceClass";
 import { ILogger, IRequestMediator, RequestMediatorHandler } from "../types";
 
 export class RequestMediator implements IRequestMediator {
@@ -23,3 +24,5 @@ export class RequestMediator implements IRequestMediator {
         return handler(DI, context, next);
     }
 }
+
+enhanceClass(RequestMediator, "RequestMediator");

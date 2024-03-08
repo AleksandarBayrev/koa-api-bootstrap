@@ -1,4 +1,5 @@
 import { Helpers } from '../Helpers';
+import { enhanceClass } from '../base/enhanceClass';
 import { AppConfig, ILogger, LogLevel } from '../types';
 
 export class Logger implements ILogger {
@@ -55,3 +56,5 @@ export class Logger implements ILogger {
         return new Date().toISOString();
     }
 }
+
+enhanceClass(Logger, "Logger");

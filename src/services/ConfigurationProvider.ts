@@ -1,3 +1,4 @@
+import { enhanceClass } from "../base/enhanceClass";
 import { AppConfig, IConfigurationProvider } from "../types";
 
 export class ConfigurationProvider implements IConfigurationProvider {
@@ -6,3 +7,5 @@ export class ConfigurationProvider implements IConfigurationProvider {
         return { ...this.configuration };
     }
 }
+
+enhanceClass(ConfigurationProvider, "ConfigurationProvider");

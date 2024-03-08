@@ -1,13 +1,10 @@
 import { DependencyInjection } from "./base";
-import { enhanceClass } from "./base/enhanceClass";
 import * as handlers from "./handlers";
 import * as routes from "./server/routes";
 import { ConfigurationProvider, Logger, RequestMediator } from "./services";
 import { AppConfig, IConfigurationProvider, ILogger, IRequestMediator } from "./types";
 
 export const configureInstances = (DI: DependencyInjection, appConfig: AppConfig) => {
-    enhanceClass(Logger, "Logger");
-    enhanceClass(RequestMediator, "RequestMediator");
     DI.registerService<IConfigurationProvider>("IConfigurationProvider", "singleton", ConfigurationProvider, [appConfig]);
     const configurationProvider = DI.getService<IConfigurationProvider>("IConfigurationProvider");
     DI.registerService<ILogger>("ILogger", "singleton", Logger, [configurationProvider.getConfiguration()]);
