@@ -3,7 +3,6 @@ import { mapMiddlewares, mapRoutes, start, getConfiguration } from './server';
 import { AppContext, AppState, AppConfig, ILogger } from './types';
 import { configureInstances } from './configureInstances';
 import { DependencyInjection } from './base';
-import process from 'process';
 import { Helpers } from './Helpers';
 
 DependencyInjection.setupInstance(console.log, false);
