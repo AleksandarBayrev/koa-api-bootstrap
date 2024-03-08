@@ -12,6 +12,11 @@ export class RequestMediator implements IRequestMediator {
     }
     addHandler(handlerName: string, handler: RequestMediatorHandler) {
         this.logger.info(`Registering handler ${handlerName}`);
+        if (this.handlers.has(handlerName)) {
+            const message =`Duplicate handler name: ${handlerName}`;
+            this.logger.error(message)
+            throw new Error(message);
+        }
         this.handlers.set(handlerName, handler);
     }
     sendRequest(handlerName: string, DI: DependencyInjection, context: any, next: any) {
