@@ -13,7 +13,8 @@
     "clean": "npm run clean:build && npm run clean:dist",
     "clean:build": "shx rm -rf ./build",
     "clean:dist": "shx rm -rf ./dist",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
