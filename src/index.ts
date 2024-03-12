@@ -9,7 +9,7 @@ DependencyInjection.setupInstance(console.log, false);
 
 (async (DI: DependencyInjection) => {
     const config: AppConfig = await getConfiguration();
-    configureInstances(DI, config);
+    await configureInstances(DI, config);
     const logger: ILogger = DI.getService<ILogger>("ILogger");
     Helpers.logFlags(config, logger);
     logger.appInfo(`Application minimum log level => ${Helpers.getLogLevel(config.minLogLevel)}`);

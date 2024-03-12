@@ -4,7 +4,7 @@ import * as routes from "./server/routes";
 import { ConfigurationProvider, Logger, RequestMediator } from "./services";
 import { AppConfig, IConfigurationProvider, ILogger, IRequestMediator } from "./types";
 
-export const configureInstances = (DI: DependencyInjection, appConfig: AppConfig) => {
+export const configureInstances = async (DI: DependencyInjection, appConfig: AppConfig) => {
     DI.registerService<IConfigurationProvider>("IConfigurationProvider", "singleton", ConfigurationProvider, [appConfig]);
     const configurationProvider = DI.getService<IConfigurationProvider>("IConfigurationProvider");
     DI.registerService<ILogger>("ILogger", "singleton", Logger, [configurationProvider.getConfiguration()]);
