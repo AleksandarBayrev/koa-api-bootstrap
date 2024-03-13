@@ -1,4 +1,4 @@
-import { AppConfig, ILogger, LogLevel } from "./types";
+import { AppConfig, ConfigurationValidationResult, ILogger, LogLevel } from "./types";
 
 export class Helpers {
     private constructor() {}
@@ -20,6 +20,14 @@ export class Helpers {
         Helpers.logDeveloperMode(config, logger);
         Helpers.logHealthcheck(config, logger);
     }
+    static validateApplicationConfiguration(configuration: AppConfig): ConfigurationValidationResult {
+        const problems: string[] = [];
+        Helpers.validateMinLogLevel(configuration, problems);
+        return {
+            valid: problems.length === 0,
+            problems
+        }
+    }
 
     //#region flags loggers
     private static logTotalHeapOnStartup(config: AppConfig, logger: ILogger) {
@@ -35,6 +43,13 @@ export class Helpers {
     private static logHealthcheck(config: AppConfig, logger: ILogger) {
         if (config.useHealthcheck) {
             logger.info('Registering /healthcheck GET endpoint. Please configure healthcheck descriptors in the handler');
+        }
+    }
+    //#endregion
+    //#region configuration validators
+    private static validateMinLogLevel(config: AppConfig, problems: string[]) {
+        if (config.minLogLevel > LogLevel.Error || config.minLogLevel < LogLevel.Info) {
+            problems.push('Invalid `minLogLevel` value in config.json! Valid values are: 0 (Info) / 1 (Warn) / 2 (Error)');
         }
     }
     //#endregion

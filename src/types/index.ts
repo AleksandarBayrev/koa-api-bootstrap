@@ -8,3 +8,4 @@ export * from './LogLevel';
 export * from './HealthCheckStatus';
 export * from './HealthCheckProblem';
 export * from './IConfigurationProvider';
+export * from './ConfigurationValidationResult';
