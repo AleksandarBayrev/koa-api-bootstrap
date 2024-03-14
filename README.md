@@ -5,6 +5,7 @@
 * `config.json` - used to configure the application. The corresponding type definition is `AppConfig`, so update both accordingly.
 
 ## Configuration (`config.json`)
+* `mode` - `production` or `development`, set it properly to avoid logging unnecessary data on Production (only errors will be logged)
 * `port` - specifies the port on which the service will run
 * `staticFileServing` - two options: `enabled` and `path` - used to enable/disable static file hosting on given path
 * `logTotalHeapOnStartup` - logs total heap used on startup, values => `true` / `false`

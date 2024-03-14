@@ -1,5 +1,5 @@
 import koa from "koa";
-import { AppConfig, AppContext, AppState, IConfigurationProvider, ILogger } from "../types";
+import { AppContext, AppState, IConfigurationProvider, ILogger } from "../types";
 import { jsonMiddleware, requestHandlerMiddleware, staticFilesMiddleware } from "./routes/middlewares";
 import { DependencyInjection } from "../base";
 

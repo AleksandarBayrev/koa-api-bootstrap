@@ -1,4 +1,5 @@
 {
+    "mode": "production",
     "logTotalHeapOnStartup": false,
     "developerMode": false,
     "minLogLevel": 0,

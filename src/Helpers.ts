@@ -51,6 +51,11 @@ export class Helpers {
         if (config.minLogLevel > LogLevel.Error || config.minLogLevel < LogLevel.Info) {
             problems.push('Invalid `minLogLevel` value in config.json! Valid values are: 0 (Info) / 1 (Warn) / 2 (Error)');
         }
+        if (config.mode === "production") {
+            if (config.minLogLevel !== LogLevel.Error) {
+                problems.push('Invalid `minLogLevel` value in config.json for production mode, only errors allowed! Valid value is: 2 (Error)');
+            }
+        }
     }
     //#endregion
 }

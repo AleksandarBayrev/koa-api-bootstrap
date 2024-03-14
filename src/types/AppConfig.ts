@@ -1,3 +1,4 @@
+import { ApplicationMode } from "./ApplicationMode";
 import { LogLevel } from "./LogLevel";
 
 type StaticFileServingOptions = {
@@ -6,6 +7,7 @@ type StaticFileServingOptions = {
 }
 
 export type AppConfig = {
+    mode: ApplicationMode;
     logTotalHeapOnStartup: boolean;
     minLogLevel: LogLevel;
     developerMode: boolean;
