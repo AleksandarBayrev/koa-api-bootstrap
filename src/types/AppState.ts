@@ -1,3 +1,3 @@
 import { DefaultState } from 'koa';
 
-export type AppState = DefaultState & {};
+export interface AppState extends DefaultState {};
