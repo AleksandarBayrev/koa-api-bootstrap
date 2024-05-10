@@ -1,7 +1,7 @@
 import koa from 'koa';
 import { DependencyInjection } from '../base';
 import { AppContext, AppState, HealthCheckProblem, HealthCheckStatus, RequestMediatorHandler } from '../types';
-import { contentTypes } from '../constants';
+import { HealthcheckStatusHeaderKeyConstant, contentTypes } from '../constants';
 import { ErrorResponse, HealthCheckResponse } from '../types/responses';
 
 export const healthcheckRouteGetHandler: RequestMediatorHandler = async (
@@ -9,7 +9,7 @@ export const healthcheckRouteGetHandler: RequestMediatorHandler = async (
     context: koa.ParameterizedContext<AppState, AppContext, HealthCheckResponse | ErrorResponse>,
     next: koa.Next
 ) => {
-    if (context.headers["healthcheck-status"] !== "true") {
+    if (context.headers[HealthcheckStatusHeaderKeyConstant] !== "true") {
         context.status = 404;
         return;
     }

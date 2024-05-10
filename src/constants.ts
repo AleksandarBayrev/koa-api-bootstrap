@@ -5,3 +5,5 @@ export const contentTypes = Object.freeze({
 });
 
 export const ConfigFileName = 'config.json';
+
+export const HealthcheckStatusHeaderKeyConstant = "healthcheck-status";
