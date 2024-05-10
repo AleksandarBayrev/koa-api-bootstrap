@@ -1,6 +1,6 @@
 import koa from 'koa';
 import { DependencyInjection } from '../base';
-import { AppConfig, AppContext, AppState, RequestMediatorHandler } from '../types';
+import { AppContext, AppState, RequestMediatorHandler } from '../types';
 import { contentTypes } from '../constants';
 
 export const authorizationExampleRouteGetHandler: RequestMediatorHandler = async (
