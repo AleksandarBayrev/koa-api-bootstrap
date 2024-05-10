@@ -11,6 +11,7 @@ export const indexRoutePatchHandler: RequestMediatorHandler = async (
 ) => {
     context.set('Content-Type', contentTypes.json);
     context.body = {
-        message: 'Hello, World! This is the PATCH route.'
+        message: 'Hello, World! This is the PATCH route.',
+        requestBody: context.request.body
     };
 }

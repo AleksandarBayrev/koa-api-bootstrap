@@ -11,6 +11,7 @@ export const indexRoutePostHandler: RequestMediatorHandler = async (
 ) => {
     context.set('Content-Type', contentTypes.json);
     context.body = {
-        message: 'Hello, World! This is the POST route.'
+        message: 'Hello, World! This is the POST route.',
+        requestBody: context.request.body
     };
 }

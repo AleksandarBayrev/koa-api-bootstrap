@@ -11,6 +11,7 @@ export const indexRoutePutHandler: RequestMediatorHandler = async (
 ) => {
     context.set('Content-Type', contentTypes.json);
     context.body = {
-        message: 'Hello, World! This is the PUT route.'
+        message: 'Hello, World! This is the PUT route.',
+        requestBody: context.request.body
     };
 }

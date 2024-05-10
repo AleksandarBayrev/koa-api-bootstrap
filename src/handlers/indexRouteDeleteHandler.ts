@@ -11,6 +11,7 @@ export const indexRouteDeleteHandler: RequestMediatorHandler = async (
 ) => {
     context.set('Content-Type', contentTypes.json);
     context.body = {
-        message: 'Hello, World! This is the DELETE route.'
+        message: 'Hello, World! This is the DELETE route.',
+        requestBody: context.request.body
     };
 }
