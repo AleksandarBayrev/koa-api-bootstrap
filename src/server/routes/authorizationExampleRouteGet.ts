@@ -1,6 +1,6 @@
 import koa from 'koa';
 import Router from 'koa-router';
-import { AppConfig, AppContext, AppState, IRequestMediator } from '../../types';
+import { AppContext, AppState, IRequestMediator } from '../../types';
 import { DependencyInjection } from '../../base';
 import { authorizationMiddleware } from './middlewares';
 
