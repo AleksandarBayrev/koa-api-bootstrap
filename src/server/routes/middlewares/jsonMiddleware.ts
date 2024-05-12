@@ -1,9 +1,9 @@
 import koa from "koa";
 import bodyParser from "koa-bodyparser";
-import { AppContext, AppState } from "../../../types";
+import { AppConfig, AppContext, AppState } from "../../../types";
 
-export const jsonMiddleware = (app: koa<AppState, AppContext>) => {
+export const jsonMiddleware = (app: koa<AppState, AppContext>, configuration: AppConfig) => {
     app.use(bodyParser({
-        jsonLimit: '100MB'
+        jsonLimit: configuration.jsonMiddlewareLimit
     }));
 }

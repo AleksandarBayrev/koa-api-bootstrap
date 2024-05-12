@@ -23,6 +23,7 @@ export class Helpers {
     static validateApplicationConfiguration(configuration: AppConfig): ConfigurationValidationResult {
         const problems: string[] = [];
         Helpers.validateMinLogLevel(configuration, problems);
+        Helpers.validateJsonMiddlewareLimit(configuration, problems);
         return {
             valid: problems.length === 0,
             problems
@@ -55,6 +56,14 @@ export class Helpers {
             if (config.minLogLevel !== LogLevel.Error) {
                 problems.push('Invalid `minLogLevel` value in config.json for production mode, only errors allowed! Valid value is: 2 (Error)');
             }
+        }
+    }
+    private static validateJsonMiddlewareLimit(config: AppConfig, problems: string[]) {
+        const validSizeType = ["MB", "KB", "GB"];
+
+        if (!config.jsonMiddlewareLimit
+            || validSizeType.filter(sizeType => config.jsonMiddlewareLimit.includes(sizeType)).length === 0) {
+            problems.push('Invalid `jsonMiddlewareLimit` value in config.json! Valid values are for example: `10MB`, `1GB`, `1024KB`, size metrics are case sensitive!');
         }
     }
     //#endregion

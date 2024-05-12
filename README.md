@@ -12,6 +12,7 @@
 * `minLogLevel` - sets the logger level, values => `0` / `1` / `2`
 * `developerMode` - logs any developer related information (such as callstacks or other predefined stuff you want to hide normally) (if such logs are added)
 * `useHealthcheck` - decides whether a `/healthcheck` endpoint should be exposed (to get healthcheck use header `healthcheck-status` with value `true`)
+* `jsonMiddlewareLimit` - sets JSON file middleware limit when uploading data (set it like this => `10MB`)
 
 ## Note about static file serving
 * When `staticFileServing` feature is enabled the app will create a `static` directory on which you should place your files that you want to be served.

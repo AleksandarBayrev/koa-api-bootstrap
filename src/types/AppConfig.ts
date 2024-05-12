@@ -14,4 +14,5 @@ export type AppConfig = {
     port: number;
     useHealthcheck: boolean;
     staticFileServing?: StaticFileServingOptions;
+    jsonMiddlewareLimit: string;
 }

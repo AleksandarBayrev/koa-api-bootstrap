@@ -8,5 +8,6 @@
     "staticFileServing": {
         "enabled": true,
         "path": "static"
-    }
+    },
+    "jsonMiddlewareLimit": "100MB"
 }

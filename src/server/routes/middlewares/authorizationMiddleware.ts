@@ -1,8 +1,8 @@
 import koa from "koa";
-import { AppContext, AppState } from "../../../types";
+import { AppContext, AppState, UserModel } from "../../../types";
 import { IncomingHttpHeaders } from "http";
 
-const tokenUserMap = new Map<string, {id: string, username: string}>();
+const tokenUserMap = new Map<string, UserModel>();
 tokenUserMap.set('test', {id: '1', username: 'testUser'});
 
 const tokenParser = (headers: IncomingHttpHeaders) => headers.authorization?.split("Bearer ")[1] || "";

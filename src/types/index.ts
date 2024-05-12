@@ -10,3 +10,4 @@ export * from './HealthCheckProblem';
 export * from './IConfigurationProvider';
 export * from './ConfigurationValidationResult';
 export * from './ApplicationMode';
+export * from './UserModel';
