@@ -1,8 +1,8 @@
-import { AppConfig, ConfigurationValidationResult, ILogger, LogLevel } from "./types";
+import { AppConfig, ConfigurationValidationResult, ILogger, LogLevel, LogLevelValues } from "./types";
 
 export class Helpers {
     private constructor() {}
-    static getLogLevel(logLevel: LogLevel) {
+    static getLogLevel(logLevel: LogLevel): LogLevelValues {
         switch (logLevel) {
             case LogLevel.Error:
                 return 'Error';
