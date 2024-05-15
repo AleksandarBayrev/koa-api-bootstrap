@@ -1,7 +1,7 @@
 const path = require('path');
 const WebpackObfuscator = require('webpack-obfuscator');
 
-module.exports = {
+const configs = [{
     mode: 'production',
     target: 'node',
     entry: [
@@ -29,4 +29,34 @@ module.exports = {
     module: {
         rules: [],
     },
-};
+}, {
+    mode: 'production',
+    target: 'node',
+    entry: [
+        path.resolve(__dirname, './build/workers/index.js')
+    ],
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'worker.js'
+    },
+    plugins: [
+        new WebpackObfuscator({
+            compact: true,
+            deadCodeInjection: true,
+            deadCodeInjectionThreshold: 1,
+            debugProtection: true,
+            identifierNamesGenerator: 'hexadecimal',
+            selfDefending: true,
+            splitStrings: true,
+            splitStringsChunkLength: 2,
+            stringArrayEncoding: ['rc4'],
+            target: 'node',
+            unicodeEscapeSequence: true
+        }),
+    ],
+    module: {
+        rules: [],
+    },
+}];
+
+module.exports = configs;
