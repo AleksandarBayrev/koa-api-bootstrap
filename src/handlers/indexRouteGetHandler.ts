@@ -9,7 +9,6 @@ const getData = (DI: DependencyInjection) => {
     worker.postMessage({action: "get"});
     return new Promise<string[]>((res, rej) => {
         worker.on("message", (data) => {
-            console.log(data);
             res(data);
         });
     });
@@ -21,8 +20,13 @@ export const indexRouteGetHandler: RequestMediatorHandler = async (
     next: koa.Next
 ) => {
     context.set('Content-Type', contentTypes.json);
-    context.body = {
+    const resultData = await getData(DI);
+    const response: IndexRouteGetResponse = {
         message: 'Hello, World! This is the GET route.',
-        data: await getData(DI)
+        dataSize: resultData.length,
     };
+    if (!context.request.query["countOnly"]) {
+        response.data = resultData;
+    }
+    context.body = response;
 }

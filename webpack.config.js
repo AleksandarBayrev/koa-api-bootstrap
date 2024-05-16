@@ -33,11 +33,11 @@ const configs = [{
     mode: 'production',
     target: 'node',
     entry: [
-        path.resolve(__dirname, './build/workers/index.js')
+        path.resolve(__dirname, './build/workers/exampleWorker.js')
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'worker.js'
+        filename: 'exampleWorker.js'
     },
     plugins: [
         new WebpackObfuscator({

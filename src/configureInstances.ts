@@ -12,7 +12,7 @@ export const configureInstances = async (DI: DependencyInjection, appConfig: App
     DI.registerService<IRequestMediator>("IRequestMediator", "singleton", RequestMediator, [logger]);
     DI.registerService<IWorkerStorage>("IWorkerStorage", "singleton", WorkerStorage, []);
     const workerStorage = DI.getService<IWorkerStorage>("IWorkerStorage");
-    workerStorage.addWorker("Test", "./worker.js");
+    workerStorage.addWorker("Test", "./exampleWorker.js");
     const requestMediator = DI.getService<IRequestMediator>("IRequestMediator");
     requestMediator.addHandler(routes.indexRouteGetHandlerName, handlers.indexRouteGetHandler);
     requestMediator.addHandler(routes.indexRoutePostHandlerName, handlers.indexRoutePostHandler);

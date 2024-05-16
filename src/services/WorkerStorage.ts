@@ -14,7 +14,6 @@ export class WorkerStorage implements IWorkerStorage {
         this.workers = new Map();
     }
     addWorker(name: string, script: string, options?: WorkerOptions | undefined): void {
-        //const worker = new Worker(script, options);
         this.workerSetup.set(name, {script, options});
     }
     getWorker(name: string): Worker {

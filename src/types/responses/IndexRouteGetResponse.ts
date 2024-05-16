@@ -1,4 +1,5 @@
 export type IndexRouteGetResponse = {
     message: string;
-    data: string[];
+    dataSize: number;
+    data?: string[];
 }

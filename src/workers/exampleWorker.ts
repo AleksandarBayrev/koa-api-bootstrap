@@ -14,18 +14,14 @@ if (parentPort) {
     const data: string[] = [];
     const callbacks = {
         add: (message: AddMessage) => {
-            console.log(`Adding ${JSON.stringify(message.data)}`);
             data.push(message.data);
-            console.log(`Data length ${data.length}`);
             parentPort!.postMessage(data);
         },
         remove: (message: RemoveMessage) => {
-            console.log(`Removing`);
             data.splice(message.index, 1);
             parentPort!.postMessage(data);
         },
         get: (message: GetMessage) => {
-            console.log('Getting')
             parentPort!.postMessage(data);
         }
     }
