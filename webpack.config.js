@@ -1,5 +1,15 @@
 const path = require('path');
 const WebpackObfuscator = require('webpack-obfuscator');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const os = require('os');
+const threadLoader = require('thread-loader');
+threadLoader.warmup({
+    workers: os.cpus().length - 2
+},
+[
+    'ts-loader',
+    'webpack-obfuscator'
+]);
 
 const resolve = Object.freeze({
     extensions: ['.ts', '.js'],
@@ -34,26 +44,50 @@ const configs = [{
         filename: 'app.js'
     },
     plugins: [
-        new WebpackObfuscator({
-            compact: true,
-            deadCodeInjection: true,
-            deadCodeInjectionThreshold: 1,
-            debugProtection: true,
-            identifierNamesGenerator: 'hexadecimal',
-            selfDefending: true,
-            splitStrings: true,
-            splitStringsChunkLength: 2,
-            stringArrayEncoding: ['rc4'],
-            target: 'node',
-            unicodeEscapeSequence: true
-        }),
+        new ForkTsCheckerWebpackPlugin({
+            typescript: {
+                diagnosticOptions: {
+                    semantic: true,
+                    syntactic: true,
+                },
+            },
+        })
     ],
     module: {
         rules: [
             {
                 test: /\.ts/,
-                loader: 'ts-loader'
-            }
+                use: [
+                    {
+                        loader: 'thread-loader',
+                        options: {
+                            workers: os.cpus().length - 2
+                        }
+                    },
+                    {
+                        loader: WebpackObfuscator.loader,
+                        options: {
+                            compact: true,
+                            deadCodeInjection: true,
+                            deadCodeInjectionThreshold: 1,
+                            debugProtection: true,
+                            identifierNamesGenerator: 'hexadecimal',
+                            selfDefending: true,
+                            splitStrings: true,
+                            splitStringsChunkLength: 2,
+                            stringArrayEncoding: ['rc4'],
+                            target: 'node',
+                            unicodeEscapeSequence: true
+                        },
+                    },
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            happyPackMode: true,
+                        },
+                    },
+                ],
+            },
         ],
     },
     resolve
@@ -81,13 +115,34 @@ const configs = [{
             target: 'node',
             unicodeEscapeSequence: true
         }),
+        new ForkTsCheckerWebpackPlugin({
+            typescript: {
+                diagnosticOptions: {
+                    semantic: true,
+                    syntactic: true,
+                },
+            },
+        })
     ],
     module: {
         rules: [
             {
                 test: /\.ts/,
-                loader: 'ts-loader'
-            }
+                use: [
+                    {
+                        loader: 'thread-loader',
+                        options: {
+                            workers: os.cpus().length - 2
+                        }
+                    },
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            happyPackMode: true,
+                        },
+                    },
+                ],
+            },
         ],
     },
     resolve
