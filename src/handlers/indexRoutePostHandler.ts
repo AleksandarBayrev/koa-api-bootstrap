@@ -1,10 +1,10 @@
 import koa from 'koa';
-import { DependencyInjection } from '../base';
-import { AppContext, AppState, IWorkerStorage, RequestMediatorHandler } from '../types';
-import { contentTypes } from '../constants';
-import { ErrorResponse, IndexRoutePostResponse } from '../types/responses';
-import { IndexRoutePostRequest } from '../types/requests';
 import { v4 } from 'uuid';
+import { DependencyInjection } from '@app-base';
+import { AppContext, AppState, IWorkerStorage, RequestMediatorHandler } from '@app-types';
+import { contentTypes } from '@app-constants';
+import { ErrorResponse, IndexRoutePostResponse } from '@app-types/responses';
+import { IndexRoutePostRequest } from '@app-types/requests';
 
 const addData = (DI: DependencyInjection, text: string) => {
     const worker = DI.getService<IWorkerStorage>("IWorkerStorage").getWorker("Test");

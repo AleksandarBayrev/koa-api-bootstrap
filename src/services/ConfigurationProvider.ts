@@ -1,5 +1,5 @@
-import { enhanceClass } from "../base/enhanceClass";
-import { AppConfig, IConfigurationProvider } from "../types";
+import { enhanceClass } from "@app-base/enhanceClass";
+import { AppConfig, IConfigurationProvider } from "@app-types";
 
 export class ConfigurationProvider implements IConfigurationProvider {
     constructor(private readonly configuration: AppConfig) { }

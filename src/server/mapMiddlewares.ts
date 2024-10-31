@@ -1,7 +1,7 @@
 import koa from "koa";
-import { AppContext, AppState, IConfigurationProvider, ILogger } from "../types";
-import { jsonMiddleware, requestHandlerMiddleware, staticFilesMiddleware } from "./routes/middlewares";
-import { DependencyInjection } from "../base";
+import { AppContext, AppState, IConfigurationProvider, ILogger } from "@app-types";
+import { jsonMiddleware, requestHandlerMiddleware, staticFilesMiddleware } from "@app-server/routes/middlewares";
+import { DependencyInjection } from "@app-base";
 
 export const mapMiddlewares = (app: koa<AppState, AppContext>, DI: DependencyInjection) => {
     const configurationProvider = DI.getService<IConfigurationProvider>("IConfigurationProvider");

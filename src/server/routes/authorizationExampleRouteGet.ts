@@ -1,8 +1,8 @@
 import koa from 'koa';
 import Router from 'koa-router';
-import { AppContext, AppState, IRequestMediator } from '../../types';
-import { DependencyInjection } from '../../base';
-import { authorizationMiddleware } from './middlewares';
+import { AppContext, AppState, IRequestMediator } from '@app-types';
+import { DependencyInjection } from '@app-base';
+import { authorizationMiddleware } from '@app-server/routes/middlewares';
 
 export const authorizationExampleRouteGetHandlerName = "authorizationExampleRouteGet";
 

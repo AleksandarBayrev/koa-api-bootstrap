@@ -1,8 +1,8 @@
 import koa from 'koa';
 import Router from 'koa-router';
-import { AppContext, AppState, IConfigurationProvider, IRequestMediator } from '../../types';
-import { DependencyInjection } from '../../base';
-import { ErrorResponse, HealthCheckResponse } from '../../types/responses';
+import { AppContext, AppState, IConfigurationProvider, IRequestMediator } from '@app-types';
+import { DependencyInjection } from '@app-base';
+import { ErrorResponse, HealthCheckResponse } from '@app-types/responses';
 
 export const healthcheckRouteGetHandlerName = "healthcheckRouteGet";
 

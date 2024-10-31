@@ -1,6 +1,6 @@
-import { DependencyInjection } from "../base";
-import { enhanceClass } from "../base/enhanceClass";
-import { ILogger, IRequestMediator, RequestMediatorHandler } from "../types";
+import { DependencyInjection } from "@app-base";
+import { enhanceClass } from "@app-base/enhanceClass";
+import { ILogger, IRequestMediator, RequestMediatorHandler } from "@app-types";
 
 export class RequestMediator implements IRequestMediator {
     private readonly logger: ILogger;

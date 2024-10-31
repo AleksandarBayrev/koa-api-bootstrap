@@ -1,9 +1,9 @@
 import koa from 'koa';
-import { mapMiddlewares, mapRoutes, start, getConfiguration } from './server';
-import { AppContext, AppState, AppConfig, ILogger } from './types';
-import { configureInstances } from './configureInstances';
-import { DependencyInjection } from './base';
-import { Helpers } from './Helpers';
+import { mapMiddlewares, mapRoutes, start, getConfiguration } from '@app-server';
+import { AppContext, AppState, AppConfig, ILogger } from '@app-types';
+import { configureInstances } from '@app-root/configureInstances';
+import { DependencyInjection } from '@app-base';
+import { Helpers } from '@app-helpers';
 
 DependencyInjection.setupInstance(console.log, false);
 

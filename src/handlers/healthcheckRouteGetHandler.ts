@@ -1,8 +1,8 @@
 import koa from 'koa';
-import { DependencyInjection } from '../base';
-import { AppContext, AppState, HealthCheckProblem, HealthCheckStatus, RequestMediatorHandler } from '../types';
-import { HealthcheckStatusHeaderKeyConstant, contentTypes } from '../constants';
-import { ErrorResponse, HealthCheckResponse } from '../types/responses';
+import { DependencyInjection } from '@app-base';
+import { AppContext, AppState, HealthCheckProblem, HealthCheckStatus, RequestMediatorHandler } from '@app-types';
+import { HealthcheckStatusHeaderKeyConstant, contentTypes } from '@app-constants';
+import { ErrorResponse, HealthCheckResponse } from '@app-types/responses';
 
 export const healthcheckRouteGetHandler: RequestMediatorHandler = async (
     DI: DependencyInjection,

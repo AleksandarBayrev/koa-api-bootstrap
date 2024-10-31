@@ -1,6 +1,6 @@
 import koa from 'koa';
-import { AppContext, AppState, IConfigurationProvider, ILogger } from '../types';
-import { DependencyInjection } from '../base';
+import { AppContext, AppState, IConfigurationProvider, ILogger } from '@app-types';
+import { DependencyInjection } from '@app-base';
 
 export const start = (app: koa<AppState, AppContext>, DI: DependencyInjection, port: number) => {
     app.listen(port, async () => {

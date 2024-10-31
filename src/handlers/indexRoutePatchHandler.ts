@@ -1,8 +1,8 @@
 import koa from 'koa';
-import { DependencyInjection } from '../base';
-import { AppContext, AppState, RequestMediatorHandler } from '../types';
-import { contentTypes } from '../constants';
-import { ErrorResponse, IndexRoutePatchResponse } from '../types/responses';
+import { DependencyInjection } from '@app-base';
+import { AppContext, AppState, RequestMediatorHandler } from '@app-types';
+import { contentTypes } from '@app-constants';
+import { ErrorResponse, IndexRoutePatchResponse } from '@app-types/responses';
 
 export const indexRoutePatchHandler: RequestMediatorHandler = async (
     DI: DependencyInjection,

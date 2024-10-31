@@ -1,5 +1,5 @@
-import { EnhancedClass } from "./enhanceClass";
-import { DILogger, ServiceDescription, ServiceLifespan, DIClassDefinition, AvailableServices } from "./types";
+import { EnhancedClass } from "@app-base/enhanceClass";
+import { DILogger, ServiceDescription, ServiceLifespan, DIClassDefinition, AvailableServices } from "@app-base/types";
 
 export class DependencyInjection {
     private static instance: DependencyInjection | null = null;

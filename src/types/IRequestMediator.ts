@@ -1,4 +1,4 @@
-import { DependencyInjection } from '../base';
+import { DependencyInjection } from '@app-base';
 import { RequestMediatorHandler } from './RequestMediatorHandler';
 
 export interface IRequestMediator {

@@ -1,6 +1,6 @@
-import { Helpers } from '../Helpers';
-import { enhanceClass } from '../base/enhanceClass';
-import { AppConfig, ILogger, LogLevel } from '../types';
+import { Helpers } from '@app-helpers';
+import { enhanceClass } from '@app-base/enhanceClass';
+import { AppConfig, ILogger, LogLevel } from '@app-types';
 
 export class Logger implements ILogger {
     constructor(private readonly appConfig: AppConfig) { }

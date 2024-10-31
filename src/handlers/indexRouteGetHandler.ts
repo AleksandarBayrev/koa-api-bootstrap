@@ -1,8 +1,8 @@
 import koa from 'koa';
-import { DependencyInjection } from '../base';
-import { AppContext, AppState, IWorkerStorage, RequestMediatorHandler } from '../types';
-import { contentTypes } from '../constants';
-import { ErrorResponse, IndexRouteGetResponse } from '../types/responses';
+import { DependencyInjection } from '@app-base';
+import { AppContext, AppState, IWorkerStorage, RequestMediatorHandler } from '@app-types';
+import { contentTypes } from '@app-constants';
+import { ErrorResponse, IndexRouteGetResponse } from '@app-types/responses';
 
 const getData = (DI: DependencyInjection) => {
     const worker = DI.getService<IWorkerStorage>("IWorkerStorage").getWorker("Test");

@@ -2,7 +2,7 @@ import koa from 'koa';
 import fs from 'fs';
 import path from 'path';
 import staticMiddleware from 'koa-static';
-import { AppState, AppContext, ILogger, AppConfig } from '../../../types';
+import { AppState, AppContext, ILogger, AppConfig } from '@app-types';
 
 export const staticFilesMiddleware = (app: koa<AppState, AppContext>, logger: ILogger, configuration: AppConfig) => {
     if (configuration.staticFileServing && configuration.staticFileServing.enabled) {

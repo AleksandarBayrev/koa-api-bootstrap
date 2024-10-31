@@ -1,6 +1,6 @@
 import koa from "koa";
-import { AppContext, AppState, UserModel } from "../../../types";
 import { IncomingHttpHeaders } from "http";
+import { AppContext, AppState, UserModel } from "@app-types";
 
 const tokenUserMap = new Map<string, UserModel>();
 tokenUserMap.set('test', {id: '1', username: 'testUser'});

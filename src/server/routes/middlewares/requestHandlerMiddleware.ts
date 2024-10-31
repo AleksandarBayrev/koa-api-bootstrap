@@ -1,7 +1,7 @@
 import koa from "koa";
-import { contentTypes } from "../../../constants";
-import { AppConfig, AppContext, AppState, ILogger } from "../../../types";
-import { ErrorResponse } from "../../../types/responses";
+import { contentTypes } from "@app-constants";
+import { AppConfig, AppContext, AppState, ILogger } from "@app-types";
+import { ErrorResponse } from "@app-types/responses";
 
 const errorMessages: {[key: number]: string} = Object.freeze({
     404: `Route not found`,

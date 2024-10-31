@@ -1,6 +1,6 @@
 import { WorkerOptions, Worker } from "worker_threads";
-import { IWorkerStorage } from "../types";
-import { enhanceClass } from "../base/enhanceClass";
+import { IWorkerStorage } from "@app-types";
+import { enhanceClass } from "@app-base/enhanceClass";
 
 type WorkerInit = {
     script: string;

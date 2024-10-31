@@ -1,4 +1,4 @@
-import { AppConfig, ConfigurationValidationResult, ILogger, LogLevel, LogLevelValues } from "./types";
+import { AppConfig, ConfigurationValidationResult, ILogger, LogLevel, LogLevelValues } from "@app-types";
 
 export class Helpers {
     private constructor() {}

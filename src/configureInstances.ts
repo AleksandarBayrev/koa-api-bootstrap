@@ -1,8 +1,8 @@
-import { DependencyInjection } from "./base";
-import * as handlers from "./handlers";
-import * as routes from "./server/routes";
-import { ConfigurationProvider, Logger, RequestMediator, WorkerStorage } from "./services";
-import { AppConfig, IConfigurationProvider, ILogger, IRequestMediator, IWorkerStorage } from "./types";
+import { DependencyInjection } from "@app-base";
+import * as handlers from "@app-handlers";
+import * as routes from "@app-server/routes";
+import { ConfigurationProvider, Logger, RequestMediator, WorkerStorage } from "@app-services";
+import { AppConfig, IConfigurationProvider, ILogger, IRequestMediator, IWorkerStorage } from "@app-types";
 
 export const configureInstances = async (DI: DependencyInjection, appConfig: AppConfig) => {
     DI.registerService<IConfigurationProvider>("IConfigurationProvider", "singleton", ConfigurationProvider, [appConfig]);

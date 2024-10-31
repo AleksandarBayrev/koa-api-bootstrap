@@ -1,8 +1,8 @@
 import koa from 'koa';
 import Router from 'koa-router';
-import { AppContext, AppState, IRequestMediator } from '../../types';
-import { DependencyInjection } from '../../base';
-import { IndexRoutePostResponse, ErrorResponse } from '../../types/responses';
+import { AppContext, AppState, IRequestMediator } from '@app-types';
+import { DependencyInjection } from '@app-base';
+import { IndexRoutePostResponse, ErrorResponse } from '@app-types/responses';
 
 export const indexRoutePostHandlerName = "indexRoutePost";
 
