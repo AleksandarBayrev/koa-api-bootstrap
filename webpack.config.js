@@ -107,10 +107,11 @@ const configs = [{
             deadCodeInjection: true,
             deadCodeInjectionThreshold: 1,
             debugProtection: true,
-            identifierNamesGenerator: 'hexadecimal',
+            identifierNamesGenerator: 'mangled',
             selfDefending: true,
             splitStrings: true,
             splitStringsChunkLength: 2,
+            stringArray: true,
             stringArrayEncoding: ['rc4'],
             target: 'node',
             unicodeEscapeSequence: true
