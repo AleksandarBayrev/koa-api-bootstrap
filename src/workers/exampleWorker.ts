@@ -9,6 +9,7 @@ type RemoveMessage = {
 }
 type GetMessage = {
     action: "get";
+    index: number;
 }
 if (parentPort) {
     const data: string[] = [];
@@ -22,7 +23,7 @@ if (parentPort) {
             parentPort!.postMessage(data);
         },
         get: (message: GetMessage) => {
-            parentPort!.postMessage(data);
+            parentPort!.postMessage(data[message.index]);
         }
     }
     parentPort.on("message", (message: AddMessage | RemoveMessage | GetMessage) => {
