@@ -10,7 +10,8 @@ export class RequestMediator implements IRequestMediator {
         this.logger = logger;
         this.handlers = new Map();
     }
-    addHandler(handlerName: string, handler: RequestMediatorHandler) {
+
+    addHandler = (handlerName: string, handler: RequestMediatorHandler) => {
         this.logger.info(`Registering handler ${handlerName}`);
         if (this.handlers.has(handlerName)) {
             const message =`Duplicate handler name: ${handlerName}`;
@@ -19,7 +20,8 @@ export class RequestMediator implements IRequestMediator {
         }
         this.handlers.set(handlerName, handler);
     }
-    sendRequest(handlerName: string, DI: DependencyInjection, context: any, next: any) {
+
+    sendRequest = (handlerName: string, DI: DependencyInjection, context: any, next: any) => {
         this.logger.info(`Getting handler ${handlerName}`);
         const handler = this.handlers.get(handlerName);
         if (!handler) {

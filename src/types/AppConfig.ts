@@ -6,6 +6,11 @@ type StaticFileServingOptions = {
     path: string;
 }
 
+type WorkerConfig = {
+    workerName: string;
+    scriptPath: string;
+}
+
 export type AppConfig = {
     mode: ApplicationMode;
     logTotalHeapOnStartup: boolean;
@@ -15,4 +20,5 @@ export type AppConfig = {
     useHealthcheck: boolean;
     staticFileServing?: StaticFileServingOptions;
     jsonMiddlewareLimit: string;
+    workers: WorkerConfig[];
 }

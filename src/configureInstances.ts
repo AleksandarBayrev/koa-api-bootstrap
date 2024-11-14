@@ -1,8 +1,9 @@
 import { DependencyInjection } from "@app-base";
 import * as handlers from "@app-handlers";
 import * as routes from "@app-server/routes";
-import { ConfigurationProvider, Logger, RequestMediator, WorkerStorage } from "@app-services";
-import { AppConfig, IConfigurationProvider, ILogger, IRequestMediator, IWorkerStorage } from "@app-types";
+import { ConfigurationProvider, Logger, RequestMediator, WorkerProcessor, WorkerStorage } from "@app-services";
+import { AppConfig, IConfigurationProvider, ILogger, IRequestMediator, IWorkerProcessor, IWorkerStorage } from "@app-types";
+import path from "path";
 
 export const configureInstances = async (DI: DependencyInjection, appConfig: AppConfig) => {
     DI.registerService<IConfigurationProvider>("IConfigurationProvider", "singleton", ConfigurationProvider, [appConfig]);
@@ -12,7 +13,11 @@ export const configureInstances = async (DI: DependencyInjection, appConfig: App
     DI.registerService<IRequestMediator>("IRequestMediator", "singleton", RequestMediator, [logger]);
     DI.registerService<IWorkerStorage>("IWorkerStorage", "singleton", WorkerStorage, []);
     const workerStorage = DI.getService<IWorkerStorage>("IWorkerStorage");
-    workerStorage.addWorker("Test", "./exampleWorker.js");
+    DI.registerService<IWorkerProcessor>("IWorkerProcessor", "singleton", WorkerProcessor, [logger, workerStorage]);
+    appConfig.workers.forEach(worker => {
+        logger.info(`Registering worker ${worker.workerName} with script path: ${path.resolve(worker.scriptPath)}`);
+        workerStorage.addWorker(worker.workerName, worker.scriptPath);
+    });
     const requestMediator = DI.getService<IRequestMediator>("IRequestMediator");
     requestMediator.addHandler(routes.indexRouteGetHandlerName, handlers.indexRouteGetHandler);
     requestMediator.addHandler(routes.indexRoutePostHandlerName, handlers.indexRoutePostHandler);

@@ -1,29 +1,21 @@
 import { parentPort } from "worker_threads";
-type AddMessage = {
-    action: "add";
-    data: string;
-}
-type RemoveMessage = {
-    action: "remove";
-    index: number;
-}
-type GetMessage = {
-    action: "get";
-    index: number;
-}
+import { DataToStore, AddMessage, RemoveMessage, GetAllMessages, GetMessage } from "./types";
 if (parentPort) {
-    const data: string[] = [];
+    const data: DataToStore[] = [];
     const callbacks = {
         add: (message: AddMessage) => {
             data.push(message.data);
             parentPort!.postMessage(data);
         },
         remove: (message: RemoveMessage) => {
-            data.splice(message.index, 1);
+            data.splice(data.findIndex(x => x.id === message.id), 1);
+            parentPort!.postMessage(data);
+        },
+        getAll: (message: GetAllMessages) => {
             parentPort!.postMessage(data);
         },
         get: (message: GetMessage) => {
-            parentPort!.postMessage(data[message.index]);
+            parentPort!.postMessage(data.find(x => x.id === message.id));
         }
     }
     parentPort.on("message", (message: AddMessage | RemoveMessage | GetMessage) => {
@@ -34,6 +26,10 @@ if (parentPort) {
         if (!callback) {
             parentPort.postMessage(`Error! Callback for action ${message.action} not found.`);
         }
-        callbacks[message.action](message as any);
+        try {
+            callbacks[message.action](message as any);
+        } catch (err) {
+            parentPort.postMessage({error: err})
+        }
     });
 }

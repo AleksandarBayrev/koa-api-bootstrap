@@ -6,10 +6,10 @@ const threadLoader = require('thread-loader');
 threadLoader.warmup({
     workers: os.cpus().length - 2
 },
-[
-    'ts-loader',
-    'webpack-obfuscator'
-]);
+    [
+        'ts-loader',
+        'webpack-obfuscator'
+    ]);
 
 const resolve = Object.freeze({
     extensions: ['.ts', '.js'],
@@ -71,10 +71,11 @@ const configs = [{
                             deadCodeInjection: true,
                             deadCodeInjectionThreshold: 1,
                             debugProtection: true,
-                            identifierNamesGenerator: 'hexadecimal',
+                            identifierNamesGenerator: 'mangled',
                             selfDefending: true,
                             splitStrings: true,
                             splitStringsChunkLength: 2,
+                            stringArray: true,
                             stringArrayEncoding: ['rc4'],
                             target: 'node',
                             unicodeEscapeSequence: true
@@ -95,27 +96,13 @@ const configs = [{
     mode: 'production',
     target: 'node',
     entry: [
-        path.resolve(__dirname, 'src', 'workers', 'exampleWorker.ts')
+        path.resolve(__dirname, 'src', 'workers', 'exampleWorker', 'exampleWorker.ts')
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'exampleWorker.js'
     },
     plugins: [
-        new WebpackObfuscator({
-            compact: true,
-            deadCodeInjection: true,
-            deadCodeInjectionThreshold: 1,
-            debugProtection: true,
-            identifierNamesGenerator: 'mangled',
-            selfDefending: true,
-            splitStrings: true,
-            splitStringsChunkLength: 2,
-            stringArray: true,
-            stringArrayEncoding: ['rc4'],
-            target: 'node',
-            unicodeEscapeSequence: true
-        }),
         new ForkTsCheckerWebpackPlugin({
             typescript: {
                 diagnosticOptions: {
@@ -135,6 +122,23 @@ const configs = [{
                         options: {
                             workers: os.cpus().length - 2
                         }
+                    },
+                    {
+                        loader: WebpackObfuscator.loader,
+                        options: {
+                            compact: true,
+                            deadCodeInjection: true,
+                            deadCodeInjectionThreshold: 1,
+                            debugProtection: true,
+                            identifierNamesGenerator: 'mangled',
+                            selfDefending: true,
+                            splitStrings: true,
+                            splitStringsChunkLength: 2,
+                            stringArray: true,
+                            stringArrayEncoding: ['rc4'],
+                            target: 'node',
+                            unicodeEscapeSequence: true
+                        },
                     },
                     {
                         loader: 'ts-loader',

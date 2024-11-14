@@ -9,14 +9,17 @@ type WorkerInit = {
 export class WorkerStorage implements IWorkerStorage {
     private readonly workerSetup: Map<string, WorkerInit>;
     private readonly workers: Map<string, Worker>;
+
     constructor() {
         this.workerSetup = new Map();
         this.workers = new Map();
     }
-    addWorker(name: string, script: string, options?: WorkerOptions | undefined): void {
+
+    addWorker = (name: string, script: string, options?: WorkerOptions | undefined): void => {
         this.workerSetup.set(name, {script, options});
     }
-    getWorker(name: string): Worker {
+
+    getWorker = (name: string): Worker => {
         const workerSetup = this.workerSetup.get(name);
         if (!workerSetup) {
             throw new Error(`Worker setup with name ${name} not registered!`);
@@ -29,7 +32,8 @@ export class WorkerStorage implements IWorkerStorage {
         }
         return existingWorker;
     }
-    deleteWorker(name: string): void {
+
+    deleteWorker = (name: string): void => {
         const worker = this.workers.get(name);
         if (!worker) {
             throw new Error(`Worker with name ${name} not registered!`);

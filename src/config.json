@@ -9,5 +9,6 @@
         "enabled": true,
         "path": "static"
     },
-    "jsonMiddlewareLimit": "100MB"
+    "jsonMiddlewareLimit": "100MB",
+    "workers": []
 }

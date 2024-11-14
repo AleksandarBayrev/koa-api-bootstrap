@@ -5,47 +5,47 @@ import { AppConfig, ILogger, LogLevel } from '@app-types';
 export class Logger implements ILogger {
     constructor(private readonly appConfig: AppConfig) { }
 
-    async appInfo(message: string) {
+    appInfo = async (message: string) => {
         const logLevel = LogLevel.AppInfo;
         console.log(`(${Helpers.getLogLevel(logLevel)}) [${this.currentDateISO}] => ${message}`);
     }
 
-    async info(message: string) {
+    info = async (message: string) => {
         const logLevel = LogLevel.Info;
         if (logLevel >= this.appConfig.minLogLevel) {
             console.log(`(${Helpers.getLogLevel(logLevel)}) [${this.currentDateISO}] => ${message}`);
         }
     }
 
-    async infoObject<T>(object: T) {
+    infoObject = async <T>(object: T) => {
         const logLevel = LogLevel.Info;
         if (logLevel >= this.appConfig.minLogLevel) {
             console.log(`(${Helpers.getLogLevel(logLevel)}) [${this.currentDateISO}] => `, object);
         }
     }
 
-    async warn(message: string) {
+    warn = async (message: string) => {
         const logLevel = LogLevel.Warn;
         if (logLevel >= this.appConfig.minLogLevel) {
             console.log(`(${Helpers.getLogLevel(logLevel)}) [${this.currentDateISO}] => ${message}`);
         }
     }
 
-    async warnObject<T>(object: T) {
+    warnObject = async <T>(object: T) => {
         const logLevel = LogLevel.Warn;
         if (logLevel >= this.appConfig.minLogLevel) {
             console.log(`(${Helpers.getLogLevel(logLevel)}) [${this.currentDateISO}] => `, object);
         }
     }
 
-    async error(message: string) {
+    error = async (message: string) => {
         const logLevel = LogLevel.Error;
         if (logLevel >= this.appConfig.minLogLevel) {
             console.log(`(${Helpers.getLogLevel(logLevel)}) [${this.currentDateISO}] => ${message}`);
         }
     }
 
-    async errorObject<T>(object: T) {
+    errorObject = async <T>(object: T) => {
         const logLevel = LogLevel.Error;
         if (logLevel >= this.appConfig.minLogLevel) {
             console.log(`(${Helpers.getLogLevel(logLevel)}) [${this.currentDateISO}] => `, object);

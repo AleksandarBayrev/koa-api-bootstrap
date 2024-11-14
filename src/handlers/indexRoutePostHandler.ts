@@ -1,19 +1,17 @@
 import koa from 'koa';
 import { v4 } from 'uuid';
 import { DependencyInjection } from '@app-base';
-import { AppContext, AppState, IWorkerStorage, RequestMediatorHandler } from '@app-types';
+import { AppContext, AppState, IWorkerProcessor, IWorkerStorage, RequestMediatorHandler } from '@app-types';
 import { contentTypes } from '@app-constants';
 import { ErrorResponse, IndexRoutePostResponse } from '@app-types/responses';
 import { IndexRoutePostRequest } from '@app-types/requests';
 
-const addData = (DI: DependencyInjection, text: string) => {
-    const worker = DI.getService<IWorkerStorage>("IWorkerStorage").getWorker("Test");
-    worker.postMessage({action: "add", data: {id: v4(), text}});
-    return new Promise<string[]>((res, rej) => {
-        worker.on("message", (data) => {
-            res(data);
-        });
-    });
+const buildRequest = (context: koa.ParameterizedContext<AppState, AppContext, IndexRoutePostResponse | ErrorResponse>) => {
+    const {text} = <IndexRoutePostRequest>context.request.body;
+    return {
+        action: 'add',
+        data: { id: v4(), text }
+    };
 }
 
 export const indexRoutePostHandler: RequestMediatorHandler = async (
@@ -21,8 +19,7 @@ export const indexRoutePostHandler: RequestMediatorHandler = async (
     context: koa.ParameterizedContext<AppState, AppContext, IndexRoutePostResponse | ErrorResponse>,
     next: koa.Next
 ) => {
-    const request = context.request.body as IndexRoutePostRequest;
-    await addData(DI, request.text);
+    await await DI.getService<IWorkerProcessor>("IWorkerProcessor").processMessage<{action: string; data: {id: string; text: string;}}, string[]>("Test", buildRequest(context));
     context.set('Content-Type', contentTypes.json);
     context.body = {
         message: 'Hello, World! This is the POST route.',

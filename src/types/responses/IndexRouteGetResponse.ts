@@ -1,5 +1,5 @@
-export type IndexRouteGetResponse = {
+export type IndexRouteGetResponse<TData> = {
     message: string;
     dataSize: number;
-    data?: string[];
+    data?: TData;
 }
